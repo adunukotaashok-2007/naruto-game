@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Shinobi Battle</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="game">
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="screen active">
+
+        <div class="logo">
+            <div class="kunai">⚔</div>
+            <h1>SHINOBI</h1>
+            <h2>BATTLE ARENA</h2>
+        </div>
+
+        <p class="subtitle">
+            A fan-made ninja fighting game
+        </p>
+
+        <button id="startButton" class="mainButton">
+            START GAME
+        </button>
+
+    </section>
+
+
+    <!-- CHARACTER SELECT -->
+    <section id="selectScreen" class="screen">
+
+        <h1>SELECT YOUR SHINOBI</h1>
+
+        <div id="characterList" class="characters"></div>
+
+        <button id="battleButton" class="mainButton">
+            BATTLE
+        </button>
+
+    </section>
+
+
+    <!-- GAME SCREEN -->
+    <section id="gameScreen" class="screen">
+
+        <!-- HUD -->
+
+        <div class="hud">
+
+            <div class="fighterHUD">
+
+                <div class="name" id="playerName">
+                    NARUTO
+                </div>
+
+                <div class="bar">
+                    <div id="playerHealth"
+                         class="health playerHealth">
+                    </div>
+                </div>
+
+                <div class="chakraBar">
+                    <div id="playerChakra"
+                         class="chakra">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="timer" id="timer">
+                60
+            </div>
+
+
+            <div class="fighterHUD enemyHUD">
+
+                <div class="name" id="enemyName">
+                    SASUKE
+                </div>
+
+                <div class="bar">
+                    <div id="enemyHealth"
+                         class="health enemyHealth">
+                    </div>
+                </div>
+
+                <div class="chakraBar">
+                    <div id="enemyChakra"
+                         class="chakra enemyChakra">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ARENA -->
+
+        <div id="arena">
+
+            <div class="moon"></div>
+
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+
+            <div id="player" class="fighter player">
+                <div class="characterEmoji">🥷</div>
+                <div class="fighterName">PLAYER</div>
+            </div>
+
+            <div id="enemy" class="fighter enemy">
+                <div class="characterEmoji">🥷</div>
+                <div class="fighterName">CPU</div>
+            </div>
+
+            <div id="effects"></div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div id="battleMessage"></div>
+
+
+        <!-- MOBILE CONTROLS -->
+
+        <div class="mobileControls">
+
+            <div class="movement">
+
+                <button id="leftButton">
+                    ◀
+                </button>
+
+                <button id="rightButton">
+                    ▶
+                </button>
+
+            </div>
+
+
+            <div class="attackControls">
+
+                <button id="attackButton">
+                    👊
+                </button>
+
+                <button id="jutsuButton">
+                    🔥
+                </button>
+
+                <button id="dashButton">
+                    💨
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- KEYBOARD HELP -->
+
+        <div class="keyboardHelp">
+            A / D = Move &nbsp; | &nbsp;
+            J = Attack &nbsp; | &nbsp;
+            K = Jutsu &nbsp; | &nbsp;
+            Space = Dash
+        </div>
+
+    </section>
+
+
+    <!-- GAME OVER -->
+
+    <section id="gameOverScreen" class="screen">
+
+        <h1 id="resultTitle">
+            VICTORY
+        </h1>
+
+        <p id="resultText">
+            You won the battle!
+        </p>
+
+        <button id="restartButton" class="mainButton">
+            PLAY AGAIN
+        </button>
+
+    </section>
+
+</div>
+
+<script src="src/entities/player/characters.js"></script>
+<script src="src/entities/enemies/enemy.js"></script>
+<script src="src/components/healthbar.js"></script>
+<script src="src/components/chakra.js"></script>
+<script src="src/components/controls.js"></script>
+<script src="src/core/input.js"></script>
+<script src="src/core/collision.js"></script>
+<script src="src/core/game.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+  </html>
