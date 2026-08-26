@@ -1,0 +1,623 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    touch-action: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    user-select: none;
+}
+
+#game {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* SCREENS */
+
+.screen {
+    position: absolute;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle at center,
+        #343434 0%,
+        #111 45%,
+        #030303 100%);
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* START */
+
+.logo {
+    margin-bottom: 25px;
+}
+
+.logo h1 {
+    font-size: clamp(45px, 10vw, 100px);
+    letter-spacing: 8px;
+    color: #ff7b00;
+    text-shadow:
+        0 0 10px #ff4d00,
+        0 0 30px #ff3300;
+}
+
+.logo h2 {
+    letter-spacing: 8px;
+    color: #ddd;
+}
+
+.kunai {
+    font-size: 50px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #aaa;
+    margin-bottom: 35px;
+}
+
+
+/* BUTTON */
+
+.mainButton {
+    border: none;
+    padding: 15px 45px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #ff3d00,
+        #ff9800
+    );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 15px rgba(255, 70, 0, .5);
+
+    transition: .2s;
+}
+
+.mainButton:hover {
+    transform: scale(1.05);
+}
+
+
+/* CHARACTER SELECT */
+
+#selectScreen h1 {
+    margin-bottom: 30px;
+    color: #ff9800;
+}
+
+.characters {
+    display: flex;
+    gap: 18px;
+
+    max-width: 1000px;
+
+    padding: 15px;
+
+    overflow-x: auto;
+}
+
+.characterCard {
+    min-width: 170px;
+
+    padding: 20px;
+
+    background: rgba(255,255,255,.08);
+
+    border: 2px solid transparent;
+
+    border-radius: 15px;
+
+    transition: .2s;
+}
+
+.characterCard:hover {
+    transform: translateY(-8px);
+    border-color: #ff9800;
+}
+
+.characterCard.selected {
+    border-color: #ff4d00;
+    background: rgba(255,80,0,.2);
+    box-shadow: 0 0 20px rgba(255,80,0,.5);
+}
+
+.characterIcon {
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.characterCard h2 {
+    margin-bottom: 8px;
+}
+
+.characterCard p {
+    color: #bbb;
+    font-size: 13px;
+}
+
+
+/* HUD */
+
+.hud {
+    position: absolute;
+
+    top: 15px;
+    left: 2%;
+    right: 2%;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fighterHUD {
+    width: 38%;
+}
+
+.enemyHUD {
+    text-align: right;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.bar {
+    width: 100%;
+    height: 20px;
+
+    background: #222;
+
+    border: 2px solid #fff;
+
+    transform: skewX(-10deg);
+}
+
+.health {
+    height: 100%;
+    width: 100%;
+
+    transition: width .2s;
+}
+
+.playerHealth {
+    background: linear-gradient(
+        90deg,
+        #19c637,
+        #8cff00
+    );
+}
+
+.enemyHealth {
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff6a00
+    );
+}
+
+.chakraBar {
+    margin-top: 5px;
+
+    width: 70%;
+    height: 8px;
+
+    background: #111;
+}
+
+.chakra {
+    width: 100%;
+    height: 100%;
+
+    background: #00aaff;
+
+    transition: width .2s;
+}
+
+.enemyChakra {
+    margin-left: auto;
+}
+
+.timer {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 4px solid white;
+    border-radius: 50%;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    background: #111;
+}
+
+
+/* ARENA */
+
+#arena {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            #182848 0%,
+            #4b6cb7 45%,
+            #191919 46%,
+            #111 100%
+        );
+}
+
+
+/* MOON */
+
+.moon {
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    background: #eee;
+
+    right: 15%;
+    top: 15%;
+
+    box-shadow:
+        0 0 40px white;
+}
+
+
+/* CLOUDS */
+
+.cloud {
+    position: absolute;
+
+    width: 180px;
+    height: 45px;
+
+    background: rgba(255,255,255,.15);
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+}
+
+.cloud1 {
+    top: 28%;
+    left: 10%;
+}
+
+.cloud2 {
+    top: 20%;
+    right: 35%;
+}
+
+
+/* FIGHTERS */
+
+.fighter {
+    position: absolute;
+
+    bottom: 16%;
+
+    width: 100px;
+    height: 140px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: transform .08s;
+}
+
+.player {
+    left: 18%;
+}
+
+.enemy {
+    right: 18%;
+}
+
+.characterEmoji {
+    font-size: 80px;
+
+    filter:
+        drop-shadow(0 10px 5px rgba(0,0,0,.5));
+}
+
+.fighterName {
+    font-size: 12px;
+    font-weight: bold;
+
+    background: rgba(0,0,0,.7);
+
+    padding: 3px 8px;
+
+    border-radius: 5px;
+}
+
+
+/* ATTACK EFFECT */
+
+.attackEffect {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    border: 8px solid #ff9800;
+
+    box-shadow:
+        0 0 25px #ff3d00;
+
+    animation: attack .3s forwards;
+}
+
+@keyframes attack {
+
+    0% {
+        transform: scale(.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+
+/* JUTSU */
+
+.jutsuEffect {
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            white,
+            #00bfff,
+            #0055ff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 30px #00bfff;
+
+    animation: jutsu .7s linear forwards;
+}
+
+@keyframes jutsu {
+
+    from {
+        transform: scale(.3);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+
+}
+
+
+/* BATTLE MESSAGE */
+
+#battleMessage {
+    position: absolute;
+
+    top: 25%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px black;
+}
+
+
+/* MOBILE CONTROLS */
+
+.mobileControls {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    z-index: 50;
+}
+
+.movement,
+.attackControls {
+    display: flex;
+    gap: 10px;
+}
+
+.mobileControls button {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255,255,255,.5);
+
+    color: white;
+
+    background: rgba(0,0,0,.65);
+
+    font-size: 24px;
+}
+
+.mobileControls button:active {
+    transform: scale(.9);
+
+    background: rgba(255,80,0,.8);
+}
+
+
+/* KEYBOARD */
+
+.keyboardHelp {
+    position: absolute;
+
+    bottom: 5px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 40;
+
+    color: #aaa;
+
+    font-size: 11px;
+}
+
+
+/* GAME OVER */
+
+#gameOverScreen h1 {
+    font-size: 65px;
+
+    color: #ff9800;
+
+    text-shadow:
+        0 0 20px #ff3d00;
+
+    margin-bottom: 15px;
+}
+
+#resultText {
+    color: #ccc;
+
+    margin-bottom: 30px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .logo h1 {
+        font-size: 50px;
+    }
+
+    .logo h2 {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+
+    .characters {
+        width: 95%;
+    }
+
+    .characterCard {
+        min-width: 135px;
+        padding: 12px;
+    }
+
+    .characterIcon {
+        font-size: 50px;
+    }
+
+    .player {
+        left: 10%;
+    }
+
+    .enemy {
+        right: 10%;
+    }
+
+    .moon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .keyboardHelp {
+        display: none;
+    }
+
+    .timer {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .name {
+        font-size: 13px;
+    }
+
+  }
